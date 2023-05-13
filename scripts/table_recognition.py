@@ -1,6 +1,6 @@
 import cv2
-from scripts.utils import sort_bboxes, thresholding, card_separator, card_recognition, \
-    convert_contours_to_bboxes, read_config_file
+from scripts.utils import sort_bboxes, thresholding, card_separator, table_part_recognition, \
+    convert_contours_to_bboxes, read_config_file, find_by_template
 import numpy as np
 
 
@@ -43,7 +43,7 @@ def detect_cards(img, cfg, separators, sort_bboxes_method, cards_coordinates, pa
               cfg[cards_coordinates]['x_0']:cfg[cards_coordinates]['x_1']]
     binary_img = thresholding(img, 200, 255)
     contours, _ = cv2.findContours(binary_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
-    bounding_boxes = convert_contours_to_bboxes(contours)
+    bounding_boxes = convert_contours_to_bboxes(contours, 10, 2)
     bounding_boxes = sort_bboxes(bounding_boxes, method=sort_bboxes_method)
     cards_bboxes_dct = card_separator(bounding_boxes, separators)
     for _, cards_bboxes in cards_bboxes_dct.items():
@@ -61,7 +61,7 @@ def detect_cards(img, cfg, separators, sort_bboxes_method, cards_coordinates, pa
             color_of_img, directory = (cv2.IMREAD_COLOR, cfg['paths'][path_to_suits]) if key == 0 \
                 else (cv2.IMREAD_GRAYSCALE, cfg['paths'][path_to_numbers])
             res_img = img[bbox[1]:bbox[3], bbox[0]:bbox[2]]
-            card_part = card_recognition(res_img, directory, color_of_img)
+            card_part = table_part_recognition(res_img, directory, color_of_img)
             card_name = card_part + '01' if len(cards_bboxes) == 1 else card_name + card_part
         cards_name.append(card_name[::-1])
     return cards_name
@@ -69,12 +69,12 @@ def detect_cards(img, cfg, separators, sort_bboxes_method, cards_coordinates, pa
 
 def detect_hero_cards(img, cfg):
     """
-        Parameters:
-            img(numpy.ndarray): image of the entire table
-            cfg (dict): config file
-        Returns:
-            cards_name(list of str): name of the hero's cards
-        """
+    Parameters:
+        img(numpy.ndarray): image of the entire table
+        cfg (dict): config file
+    Returns:
+        cards_name(list of str): name of the hero's cards
+    """
     separators = [cfg['hero_cards']['separator_1'], cfg['hero_cards']['separator_2']]
     sort_bboxes_method = 'bottom-to-top'
     cards_coordinates = 'hero_cards'
@@ -101,4 +101,30 @@ def detect_table_cards(img, cfg):
     cards_name = detect_cards(img, cfg, separators, sort_bboxes_method, cards_coordinates, path_to_numbers,
                               path_to_suits)
     return cards_name
+
+
+def find_total_pot(img, cfg):
+    """
+    Parameters:
+        img(numpy.ndarray): image of the entire table
+        cfg (dict): config file
+    Returns:
+        number(str): number with total pot
+    """
+    img = img[cfg['pot']['y_0']:cfg['pot']['y_1'],
+                  cfg['pot']['x_0']:cfg['pot']['x_1']]
+    _, max_loc = find_by_template(img, cfg['paths']['pot_image'])
+    bet_img = img[max_loc[1]-3:max_loc[1] + cfg['pot']['height'],
+                  max_loc[0]+cfg['pot']['pot_template_width']:max_loc[0]+cfg['pot']['pot_template_width']+cfg['pot']['width']]
+    binary_img = thresholding(bet_img, 105, 255)
+    contours, _ = cv2.findContours(binary_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+    bounding_boxes = convert_contours_to_bboxes(contours, 3, 1)
+    bounding_boxes = sort_bboxes(bounding_boxes, method='left-to-right')
+    number = ''
+    for bbox in bounding_boxes:
+        number_img = bet_img[bbox[1]:bbox[3], bbox[0]:bbox[2]]
+        symbol = table_part_recognition(number_img, cfg['paths']['pot_numbers'], cv2.IMREAD_GRAYSCALE)
+        number += symbol
+    return number
+
 

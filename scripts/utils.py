@@ -96,26 +96,26 @@ def thresholding(img, value_1, value_2):
     return binary_img
 
 
-def card_recognition(img, directory, color_of_img):
+def table_part_recognition(img, directory, color_of_img):
     """
     Parameters:
         img(numpy.ndarray): image of a part of the table
-        directory(str): path to specific directory
+        directory(str): path to the template images
         color_of_img(int): set in which format to read the image.
         It can be cv2.IMREAD_COLOR or cv2.IMREAD_GRAYSCALE
     Returns:
-        card_part(str): recognized suit or value (J, K etc.)
+        table_part(str): recognized suit, value (J, K etc.), pot etc.
     """
     err_dict = {}
     for full_image_name in os.listdir(directory):
         image_name = full_image_name.split('.')[0]
         err = image_comparison(img, directory + full_image_name, color_of_img)
         err_dict[image_name] = err
-    card_part = min(err_dict, key=err_dict.get)
-    return card_part
+    table_part = min(err_dict, key=err_dict.get)
+    return table_part
 
 
-def convert_contours_to_bboxes(contours):
+def convert_contours_to_bboxes(contours, min_height, min_width):
     """
     convert contours to bboxes, also remove all small bounding boxes
     Parameters:
@@ -132,7 +132,7 @@ def convert_contours_to_bboxes(contours):
     for i in range(0, len(bboxes)):
         x, y, w, h = bboxes[i][0], bboxes[i][1], \
             bboxes[i][2], bboxes[i][3]
-        if h > 10 and w > 2:
+        if h >= min_height and w >= min_width:
             contour_coordinates = [x - 1, y - 1, x + w + 1, y + h + 1]
             cards_bboxes.append(contour_coordinates)
     return cards_bboxes
@@ -155,6 +155,25 @@ def card_separator(bboxes, separators):
                 break
     sorted_dct = {key: value for key, value in sorted(dct.items(), key=lambda item: int(item[0]))}
     return sorted_dct
+
+
+def find_by_template(img, path_to_image):
+    """
+     Object detection using a "template".
+     Parameters:
+         img(numpy.ndarray): image of a part of the table/of the entire table
+         path_to_image(str): the path to a template image
+    Returns:
+        max_val(float): largest value with the most likely match
+        max_loc(tuple of int): location with the largest value.
+        Location presented in (x, y) format
+    """
+    template_img_gray = cv2.imread(path_to_image, 0)
+    img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    result = cv2.matchTemplate(img_gray, template_img_gray,
+                               cv2.TM_CCOEFF_NORMED)
+    (min_val, max_val, min_loc, max_loc) = cv2.minMaxLoc(result)
+    return max_val, max_loc
 
 
 def load_images(directory):
