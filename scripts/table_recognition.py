@@ -130,6 +130,7 @@ def find_total_pot(img, cfg):
 
 def get_dealer_button_position(img, cfg):
     """
+    determine who is closer to the dealer button
     Parameters:
         img(numpy.ndarray): image of the entire table
         cfg (dict): config file

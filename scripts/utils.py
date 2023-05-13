@@ -192,7 +192,7 @@ def load_images(directory):
 
 def find_closer_point(players_coordinates, button_coordinates):
     """
-    determine who is closer to the dealer button
+    find the distance between two points  and find the minimum distance
     Parameters:
         players_coordinates(dict): key - player number, value - player coordinates
         button_coordinates(tuple): Coordinates are presented in (x, y) format
