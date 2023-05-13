@@ -3,6 +3,7 @@ paths:
   hero_cards: 'images_for_test/hero_cards/'
   table_cards: 'images_for_test/table_cards/'
   total_pot: 'images_for_test/total_pot/'
+  dealer_button_position: 'images_for_test/dealer_button_position/'
 
 hero_step:
   test_image_1.png: True
@@ -80,6 +81,19 @@ total_pot:
   test_image_14.png: '38,169'
   test_image_15.png: '283'
   test_image_16.png: '478'
+
+dealer_button_position:
+  test_image_1.png: 2
+  test_image_2.png: 3
+  test_image_3.png: 4
+  test_image_4.png: 6
+  test_image_5.png: 4
+  test_image_6.png: 1
+  test_image_7.png: 1
+  test_image_8.png: 5
+  test_image_9.png: 3
+  test_image_10.png: 6
+  test_image_11.png: 4
 
 
 
