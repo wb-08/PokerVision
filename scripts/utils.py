@@ -3,6 +3,7 @@ import numpy as np
 import yaml
 import os
 from time import sleep
+from math import sqrt
 
 
 def read_config_file(filename='config.yaml'):
@@ -166,7 +167,7 @@ def find_by_template(img, path_to_image):
     Returns:
         max_val(float): largest value with the most likely match
         max_loc(tuple of int): location with the largest value.
-        Location presented in (x, y) format
+        Location is presented in (x, y) format
     """
     template_img_gray = cv2.imread(path_to_image, 0)
     img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -187,6 +188,24 @@ def load_images(directory):
     images = [cv2.imread(directory + file) for file in sorted(os.listdir(directory))]
     file_names = [file for file in sorted(os.listdir(directory))]
     return images, file_names
+
+
+def find_closer_point(players_coordinates, button_coordinates):
+    """
+    determine who is closer to the dealer button
+    Parameters:
+        players_coordinates(dict): key - player number, value - player coordinates
+        button_coordinates(tuple): Coordinates are presented in (x, y) format
+    Returns:
+        player_with_button(int): the number of the player who is closest to the buttonthe number of the player who is closest to the button
+    """
+    distance_dict = {}
+    for player, player_coordinates in players_coordinates.items():
+        distance = sqrt((player_coordinates[0] - button_coordinates[0]) ** 2
+                        + (player_coordinates[1] - button_coordinates[1]) ** 2)
+        distance_dict[player] = distance
+    player_with_button = min(distance_dict, key=distance_dict.get)
+    return player_with_button
 
 
 def set_window_size():

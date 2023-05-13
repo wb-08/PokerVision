@@ -1,6 +1,6 @@
 import cv2
 from scripts.utils import sort_bboxes, thresholding, card_separator, table_part_recognition, \
-    convert_contours_to_bboxes, read_config_file, find_by_template
+    convert_contours_to_bboxes, read_config_file, find_by_template, find_closer_point
 import numpy as np
 
 
@@ -126,5 +126,21 @@ def find_total_pot(img, cfg):
         symbol = table_part_recognition(number_img, cfg['paths']['pot_numbers'], cv2.IMREAD_GRAYSCALE)
         number += symbol
     return number
+
+
+def get_dealer_button_position(img, cfg):
+    """
+    Parameters:
+        img(numpy.ndarray): image of the entire table
+        cfg (dict): config file
+    Returns:
+        player_with_button(int): the number of the player who is closest to the button
+    """
+    players_coordinates = cfg['player_position_coordinates']
+    _, button_coordinates = find_by_template(img, cfg['paths']['dealer_button'])
+    player_with_button = find_closer_point(players_coordinates, button_coordinates)
+    return player_with_button
+
+
 
 

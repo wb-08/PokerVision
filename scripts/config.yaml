@@ -5,6 +5,7 @@ paths:
   table_cards_suits: '../images_templates/table_cards_suits/'
   pot_numbers: '../images_templates/pot_numbers/'
   pot_image: '../images_templates/pot/pot.png'
+  dealer_button: '../images_templates/dealer_button/button.png'
 
 
 table_size:
@@ -52,3 +53,12 @@ pot:
   height: 20
   pot_template_width: 33
 
+player_position_coordinates:
+  # the first player is the hero and then clockwise
+  # coordinates are stored in [x, y] format
+  1: [469, 598]
+  2: [208,463]
+  3: [237,278]
+  4: [620,200]
+  5: [857, 274]
+  6: [867, 486]
