@@ -1,0 +1,6 @@
+mss==9.0.1
+numpy==1.24.3
+opencv-contrib-python==4.5.5.62
+opencv-python==4.5.5.62
+Pillow==9.5.0
+PyYAML==6.0
