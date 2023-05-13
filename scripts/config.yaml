@@ -1,0 +1,40 @@
+paths:
+  hero_cards_suits: '../images_templates/hero_cards_suits/'
+  hero_cards_numbers: '../images_templates/hero_cards_numbers/'
+  table_cards_numbers: '../images_templates/table_cards_numbers/'
+  table_cards_suits: '../images_templates/table_cards_suits/'
+
+
+table_size:
+  table_width: 1090
+  table_height: 900
+
+hero_step_define:
+  x_0: 511
+  y_0: 605
+  x_1: 528
+  y_1: 644
+  lower_gray_color: [0, 5, 50]
+  upper_gray_color: [179, 10, 255]
+  min_white_pixels: 400
+
+
+hero_cards:
+  x_0: 478
+  y_0: 535
+  x_1: 616
+  y_1: 592
+  separator_1: 67
+  separator_2: 137
+
+table_cards:
+  x_0: 364
+  y_0: 319
+  x_1: 730
+  y_1: 414
+  separator_1: 72
+  separator_2: 144
+  separator_3: 218
+  separator_4: 290
+  separator_5: 363
+
