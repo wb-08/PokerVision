@@ -2,6 +2,7 @@ paths:
   hero_step: 'images_for_test/hero_step/'
   hero_cards: 'images_for_test/hero_cards/'
   table_cards: 'images_for_test/table_cards/'
+  total_pot: 'images_for_test/total_pot/'
 
 hero_step:
   test_image_1.png: True
@@ -62,6 +63,24 @@ table_cards:
   test_image_18.png: ['6d','10c','5s']
   test_image_19.png: []
   test_image_20.png: ['3h','Qc','7c']
+
+total_pot:
+  test_image_1.png: '1,550'
+  test_image_2.png: '150'
+  test_image_3.png: '2,268'
+  test_image_4.png: '250'
+  test_image_5.png: '861'
+  test_image_7.png: '3,496'
+  test_image_8.png: '17,450'
+  test_image_9.png: '350'
+  test_image_10.png: '2,354'
+  test_image_11.png: '400'
+  test_image_12.png: '750'
+  test_image_13.png: '550'
+  test_image_14.png: '38,169'
+  test_image_15.png: '283'
+  test_image_16.png: '478'
+
 
 
 

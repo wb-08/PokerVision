@@ -1,5 +1,5 @@
 import unittest
-from scripts.table_recognition import detect_hero_step, detect_hero_cards, detect_table_cards
+from scripts.table_recognition import detect_hero_step, detect_hero_cards, detect_table_cards, find_total_pot
 from scripts.utils import read_config_file, load_images
 
 cfg = read_config_file('../scripts/config.yaml')
@@ -25,6 +25,13 @@ class TestTableRecognition(unittest.TestCase):
         for image, filename in zip(images, file_names):
             with self.subTest("TestTableCards Incorrect detection in the image", filename=filename):
                 self.assertEqual(detect_table_cards(image, cfg), test_cfg['table_cards'][filename])
+
+    def test_total_pot(self):
+        images, file_names = load_images(test_cfg['paths']['total_pot'])
+        for image, filename in zip(images, file_names):
+            with self.subTest("TestTotalPot Incorrect detection in the image", filename=filename):
+                self.assertEqual(find_total_pot(image, cfg), test_cfg['total_pot'][filename])
+
 
 
 if __name__ == '__main__':
