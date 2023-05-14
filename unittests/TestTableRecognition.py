@@ -35,7 +35,7 @@ class TestTableRecognition(unittest.TestCase):
     def test_dealer_button_position(self):
         images, file_names = load_images(test_cfg['paths']['dealer_button_position'])
         for image, filename in zip(images, file_names):
-            with self.subTest("TestTotalPot Incorrect detection in the image", filename=filename):
+            with self.subTest("TestDealerButton Incorrect detection in the image", filename=filename):
                 self.assertEqual(get_dealer_button_position(image, cfg), test_cfg['dealer_button_position'][filename])
 
 

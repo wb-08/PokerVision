@@ -135,13 +135,14 @@ def get_dealer_button_position(img, cfg):
         img(numpy.ndarray): image of the entire table
         cfg (dict): config file
     Returns:
-        player_with_button(int): the number of the player who is closest to the button
+        player_info(dict): here is information about all players as it becomes available
     """
+    player_info = {key: value for key in range(1, 7) for value in ['']}
     players_coordinates = cfg['player_position_coordinates']
     _, button_coordinates = find_by_template(img, cfg['paths']['dealer_button'])
     player_with_button = find_closer_point(players_coordinates, button_coordinates)
-    return player_with_button
-
+    player_info[player_with_button] = 'dealer_button'
+    return player_info
 
 
 
