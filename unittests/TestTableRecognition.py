@@ -1,5 +1,6 @@
 import unittest
-from scripts.table_recognition import detect_hero_step, detect_hero_cards, detect_table_cards, find_total_pot, get_dealer_button_position
+from scripts.table_recognition import detect_hero_step, detect_hero_cards, detect_table_cards, find_total_pot,\
+    get_dealer_button_position, get_empty_seats, get_so_players, assign_positions
 from scripts.utils import read_config_file, load_images
 
 cfg = read_config_file('../scripts/config.yaml')
@@ -37,6 +38,15 @@ class TestTableRecognition(unittest.TestCase):
         for image, filename in zip(images, file_names):
             with self.subTest("TestDealerButton Incorrect detection in the image", filename=filename):
                 self.assertEqual(get_dealer_button_position(image, cfg), test_cfg['dealer_button_position'][filename])
+
+    def test_player_position(self):
+        images, file_names = load_images(test_cfg['paths']['player_position'])
+        for image, filename in zip(images, file_names):
+            with self.subTest("TestPlayerPosition Incorrect detection in the image", filename=filename):
+                players_info = get_dealer_button_position(image, cfg)
+                players_info = get_empty_seats(image, cfg, players_info)
+                players_info = get_so_players(image, cfg, players_info)
+                self.assertEqual(assign_positions(players_info), test_cfg['player_position'][filename])
 
 
 if __name__ == '__main__':

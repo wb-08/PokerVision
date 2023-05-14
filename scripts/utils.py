@@ -217,5 +217,3 @@ def set_window_size():
     os.system(cmd)
 
 
-
-

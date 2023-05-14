@@ -138,11 +138,86 @@ def get_dealer_button_position(img, cfg):
         player_info(dict): here is information about all players as it becomes available
     """
     player_info = {key: value for key in range(1, 7) for value in ['']}
-    players_coordinates = cfg['player_position_coordinates']
+    players_coordinates = cfg['player_center_coordinates']
     _, button_coordinates = find_by_template(img, cfg['paths']['dealer_button'])
     player_with_button = find_closer_point(players_coordinates, button_coordinates)
     player_info[player_with_button] = 'dealer_button'
     return player_info
+
+
+def get_missing_players(img, cfg, players_info, path_to_template_img, flag):
+    """
+    find players who are currently absent for various reasons
+    Parameters:
+        img(numpy.ndarray): image of the entire table
+        cfg (dict): config file
+        players_info(dict): key - player number, value - '' - if the player is in the game;
+        '-' - if a player's seat is available; '-so-' - if the player is absent
+    Returns:
+       players_info(dict): info about players
+    """
+    players_coordinates = cfg['players_coordinates']
+    players_for_checking = [key for key, value in players_info.items() if value == '']
+    for player, bbox in players_coordinates.items():
+        if player != 1 and player in players_for_checking:
+            player_img = img[bbox[1]:bbox[3], bbox[0]:bbox[2]]
+            max_val, _ = find_by_template(player_img, cfg['paths'][path_to_template_img])
+            if max_val > 0.8:
+                players_info[player] = flag
+    return players_info
+
+
+def get_empty_seats(img, cfg, players_info):
+    """
+    find players whose places are currently vacant
+    Parameters:
+        img(numpy.ndarray): image of the entire table
+        cfg (dict): config file
+    Returns:
+       players_info(dict): info about players
+    """
+    path_to_template_img = 'empty_seat'
+    flag = '-'
+    players_info = get_missing_players(img, cfg, players_info, path_to_template_img, flag)
+    return players_info
+
+
+def get_so_players(img, cfg, players_info):
+    """
+    find players who are not currently in the game
+    Parameters:
+        img(numpy.ndarray): image of the entire table
+        cfg (dict): config file
+    Returns:
+        players_info(dict): info about players
+    """
+    path_to_template_img = 'sitting_out'
+    flag = '-so-'
+    players_info = get_missing_players(img, cfg, players_info, path_to_template_img, flag)
+    return players_info
+
+
+def assign_positions(players_info):
+    """
+    assign each player one of six positions if the player in the game
+    Parameters:
+        players_info(dict): info about players in {1:'', 2: 'dealer_button',3:'-so-' etc. } format
+    Returns:
+        players_info(dict): info about players in {1: 'BB', 2: 'SB', 3: '-so-' etc. } format
+    """
+    busy_seats = [k for k, v in players_info.items() if v != '-' and v != '-so-']
+    exist_positions = ['BTN', 'SB', 'BB', 'UTG', 'MP', 'CO']
+    del exist_positions[3:3+(6-len(busy_seats))]
+    player_with_button = [k for k, v in players_info.items() if v == 'dealer_button'][0]
+    for index, player_number in enumerate(
+            busy_seats[busy_seats.index(player_with_button):] + busy_seats[:busy_seats.index(player_with_button)]):
+        if len(busy_seats) == 2:
+            position = 'SB' if index == 0 else 'BB'
+            players_info[player_number] = position
+        else:
+            players_info[player_number] = exist_positions[index]
+    return players_info
+
 
 
 

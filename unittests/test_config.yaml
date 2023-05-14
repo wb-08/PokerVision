@@ -4,6 +4,7 @@ paths:
   table_cards: 'images_for_test/table_cards/'
   total_pot: 'images_for_test/total_pot/'
   dealer_button_position: 'images_for_test/dealer_button_position/'
+  player_position: 'images_for_test/player_position/'
 
 hero_step:
   test_image_1.png: True
@@ -94,6 +95,19 @@ dealer_button_position:
   test_image_9.png: {1: '', 2: '', 3: 'dealer_button', 4: '', 5: '', 6: ''}
   test_image_10.png: {1: '', 2: '', 3: '', 4: '', 5: '', 6: 'dealer_button'}
   test_image_11.png: {1: '', 2: '', 3: '', 4: 'dealer_button', 5: '', 6: ''}
+
+player_position:
+  #['BTN', 'SB', 'BB', 'UTG', 'MP', 'CO']
+  test_image_1.png: {1: 'CO', 2: 'BTN', 3: 'SB', 4: 'BB', 5: '-so-', 6: 'MP'}
+  test_image_2.png: { 1: 'MP', 2: 'CO', 3: 'BTN', 4: 'SB', 5: '-so-', 6: 'BB'}
+  test_image_3.png: { 1: 'BB', 2: '-so-', 3: 'CO', 4: 'BTN', 5: '-so-', 6: 'SB'}
+  test_image_4.png: { 1: 'SB', 2: 'BB', 3: 'MP', 4: 'CO', 5: '-so-', 6: 'BTN'}
+  test_image_5.png: { 1: 'BB', 2: 'CO', 3: '-so-', 4: '-so-', 5: 'BTN', 6: 'SB'}
+  test_image_6.png: { 1: 'BB', 2: 'MP', 3: 'CO', 4: 'BTN', 5: '-so-', 6: 'SB'}
+  test_image_7.png: { 1: 'BB', 2: '-so-', 3: '-so-', 4: '-', 5: '-', 6: 'SB'}
+  test_image_8.png: { 1: 'BB', 2: '-', 3: 'CO', 4: 'BTN', 5: '-', 6: 'SB'}
+  test_image_9.png: { 1: 'BTN', 2: 'SB', 3: 'BB', 4: 'UTG', 5: 'MP', 6: 'CO'}
+  test_image_10.png: { 1: 'BB', 2: '-', 3: 'CO', 4: 'BTN', 5: '-', 6: 'SB'}
 
 
 
