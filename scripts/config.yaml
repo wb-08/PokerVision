@@ -11,8 +11,12 @@ paths:
 
 
 table_size:
-  table_width: 1090
-  table_height: 900
+  width: 1090
+  height: 900
+
+info_box_size:
+  width: 470
+  height: 500
 
 hero_step_define:
   x_0: 511

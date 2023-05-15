@@ -208,7 +208,7 @@ def find_closer_point(players_coordinates, button_coordinates):
     return player_with_button
 
 
-def form_needed_cards(hero_cards, table_cards):
+def remove_cards(hero_cards, table_cards):
     """
     Parameters:
         hero_cards(list of str): cards that belong to the hero
@@ -232,5 +232,22 @@ def set_window_size():
     sleep(3)
     cmd = 'wmctrl -r :ACTIVE: -e 0,0,0,1100,900'
     os.system(cmd)
+
+
+def data_concatenate(hero_hand, table_cards, total_pot, equity, players_info):
+    """
+    information from all lists, dictionaries are added to one common line
+    """
+    text_players_info = ''
+    for key, value in players_info.items():
+        value = 'no bet found' if value == '' else value
+        text_players_info += str(key) + ':' + str(value) + '\n'
+
+    table_cards = ['no cards on the table'] if table_cards == [] else table_cards
+
+    text = 'Hero hand: ' + ' '.join(hero_hand) + '\n' + 'Board: ' + ' '.join(table_cards) + '\n' + \
+           'Pot: ' + total_pot + '\n' + 'Equity: ' + str(equity) + '%' + '\n' + \
+           '------------------------------' + '\n' + text_players_info
+    return text
 
 
