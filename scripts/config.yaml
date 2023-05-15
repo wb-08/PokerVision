@@ -29,6 +29,7 @@ hero_cards:
   y_0: 535
   x_1: 616
   y_1: 592
+  # x coordinate where the card ends
   separator_1: 67
   separator_2: 137
 
@@ -37,6 +38,7 @@ table_cards:
   y_0: 319
   x_1: 730
   y_1: 414
+  # x coordinate where the card ends
   separator_1: 72
   separator_2: 144
   separator_3: 218
@@ -73,3 +75,11 @@ players_coordinates:
   4: [437, 139, 659, 213]
   5: [814, 214, 1040,288]
   6: [850, 449, 1075, 524]
+
+players_bet:
+  # coordinates are stored in [x_0, y_0, x_1, y_1] format
+  2: [279, 457, 379, 480]
+  3: [292, 296, 392, 318]
+  4: [600, 222, 700, 246]
+  5: [688, 270, 788, 292]
+  6: [717, 457, 817, 480]

@@ -219,5 +219,37 @@ def assign_positions(players_info):
     return players_info
 
 
+def find_players_bet(img, cfg, players_info):
+    """
+    Parameters:
+        img(numpy.ndarray): image of the entire table
+        cfg (dict): config file
+        players_info(dict): info about players in {1:'BTN', 2:'SB', 3:'BB' etc. } format
+    Returns:
+        updated_players_info(dict): info about players in {1:'BTN', 'SB':'', 'BB':'50' etc. } format
+    """
+    players_bet_location = cfg['players_bet']
+    updated_players_info = {1: players_info[1]}
+    for i, location_coordinates in players_bet_location.items():
+        if players_info[i] not in ('-so-', '-'):
+            bet_img = img[location_coordinates[1]:location_coordinates[3],
+                          location_coordinates[0]:location_coordinates[2]]
+            binary_img = thresholding(bet_img, 105, 255)
+            contours, _ = cv2.findContours(binary_img, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+            bounding_boxes = convert_contours_to_bboxes(contours, 3, 1)
+            bounding_boxes = sort_bboxes(bounding_boxes, method='left-to-right')
+            number = ''
+            for bbox in bounding_boxes:
+                number_img = bet_img[bbox[1]:bbox[3], bbox[0]:bbox[2]]
+                symbol = table_part_recognition(number_img, cfg['paths']['pot_numbers'], cv2.IMREAD_GRAYSCALE)
+                number += symbol
+            updated_players_info[players_info[i]] = number
+        else:
+            updated_players_info[i] = players_info[i]
+    return updated_players_info
+
+
+
+
 
 

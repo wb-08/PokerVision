@@ -5,6 +5,7 @@ paths:
   total_pot: 'images_for_test/total_pot/'
   dealer_button_position: 'images_for_test/dealer_button_position/'
   player_position: 'images_for_test/player_position/'
+  player_bet: 'images_for_test/player_bet/'
 
 hero_step:
   test_image_1.png: True
@@ -97,17 +98,29 @@ dealer_button_position:
   test_image_11.png: {1: '', 2: '', 3: '', 4: 'dealer_button', 5: '', 6: ''}
 
 player_position:
-  #['BTN', 'SB', 'BB', 'UTG', 'MP', 'CO']
   test_image_1.png: {1: 'CO', 2: 'BTN', 3: 'SB', 4: 'BB', 5: '-so-', 6: 'MP'}
-  test_image_2.png: { 1: 'MP', 2: 'CO', 3: 'BTN', 4: 'SB', 5: '-so-', 6: 'BB'}
-  test_image_3.png: { 1: 'BB', 2: '-so-', 3: 'CO', 4: 'BTN', 5: '-so-', 6: 'SB'}
-  test_image_4.png: { 1: 'SB', 2: 'BB', 3: 'MP', 4: 'CO', 5: '-so-', 6: 'BTN'}
-  test_image_5.png: { 1: 'BB', 2: 'CO', 3: '-so-', 4: '-so-', 5: 'BTN', 6: 'SB'}
-  test_image_6.png: { 1: 'BB', 2: 'MP', 3: 'CO', 4: 'BTN', 5: '-so-', 6: 'SB'}
-  test_image_7.png: { 1: 'BB', 2: '-so-', 3: '-so-', 4: '-', 5: '-', 6: 'SB'}
-  test_image_8.png: { 1: 'BB', 2: '-', 3: 'CO', 4: 'BTN', 5: '-', 6: 'SB'}
-  test_image_9.png: { 1: 'BTN', 2: 'SB', 3: 'BB', 4: 'UTG', 5: 'MP', 6: 'CO'}
-  test_image_10.png: { 1: 'BB', 2: '-', 3: 'CO', 4: 'BTN', 5: '-', 6: 'SB'}
+  test_image_2.png: {1: 'MP', 2: 'CO', 3: 'BTN', 4: 'SB', 5: '-so-', 6: 'BB'}
+  test_image_3.png: {1: 'BB', 2: '-so-', 3: 'CO', 4: 'BTN', 5: '-so-', 6: 'SB'}
+  test_image_4.png: {1: 'SB', 2: 'BB', 3: 'MP', 4: 'CO', 5: '-so-', 6: 'BTN'}
+  test_image_5.png: {1: 'BB', 2: 'CO', 3: '-so-', 4: '-so-', 5: 'BTN', 6: 'SB'}
+  test_image_6.png: {1: 'BB', 2: 'MP', 3: 'CO', 4: 'BTN', 5: '-so-', 6: 'SB'}
+  test_image_7.png: {1: 'BB', 2: '-so-', 3: '-so-', 4: '-', 5: '-', 6: 'SB'}
+  test_image_8.png: {1: 'BB', 2: '-', 3: 'CO', 4: 'BTN', 5: '-', 6: 'SB'}
+  test_image_9.png: {1: 'BTN', 2: 'SB', 3: 'BB', 4: 'UTG', 5: 'MP', 6: 'CO'}
+  test_image_10.png: {1: 'BB', 2: '-', 3: 'CO', 4: 'BTN', 5: '-', 6: 'SB'}
+
+player_bet:
+  test_image_1.png: {1: 'CO', 'BTN': '', 'SB': '700', 'BB': '', 5: '-so-', 'MP': ''}
+  test_image_2.png: {1: 'SB', BB: '8,000', MP: '', CO: '', 5: '-so-', BTN: ''}
+  test_image_3.png: {1: 'BB', 2: '-so-', CO: '', BTN: '', 5: '-so-', SB: '50'}
+  test_image_4.png: {1: 'CO', BTN: '1,748', SB: '1,748', BB: '', 5: '-so-', MP: ''}
+  test_image_5.png: {1: 'SB', 2: '-', 'BB': '100', 'CO': '', 5: '-', BTN: '100'}
+  test_image_6.png: {1: 'BTN', 'SB': '50', 'BB': '100', 'MP': '100', 5: '-so-', CO: '100'}
+  test_image_7.png: {1: 'SB', 'BB': '', 3: '-so-', 4: '-so-', 'CO': '', 'BTN': ''}
+  test_image_8.png: {1: 'BB', 2: '-', 'CO': '', 'BTN': '100', 5: '-', 'SB': ''}
+  test_image_9.png: {1: 'BTN', 'SB': '', 'BB': '50', 'UTG': '100', 'MP': '200', 'CO': '200'}
+  test_image_10.png: {1: 'BB', 'CO': '2,362', 3: '-', 4: '-', 'BTN': '', 'SB': ''}
+
 
 
 
