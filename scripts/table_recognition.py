@@ -62,7 +62,7 @@ def detect_cards(img, cfg, separators, sort_bboxes_method, cards_coordinates, pa
                 else (cv2.IMREAD_GRAYSCALE, cfg['paths'][path_to_numbers])
             res_img = img[bbox[1]:bbox[3], bbox[0]:bbox[2]]
             card_part = table_part_recognition(res_img, directory, color_of_img)
-            card_name = card_part + '01' if len(cards_bboxes) == 1 else card_name + card_part
+            card_name = card_part + 'T' if len(cards_bboxes) == 1 else card_name + card_part
         cards_name.append(card_name[::-1])
     return cards_name
 
@@ -247,9 +247,4 @@ def find_players_bet(img, cfg, players_info):
         else:
             updated_players_info[i] = players_info[i]
     return updated_players_info
-
-
-
-
-
 
