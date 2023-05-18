@@ -110,16 +110,16 @@ player_position:
   test_image_10.png: {1: 'BB', 2: '-', 3: 'CO', 4: 'BTN', 5: '-', 6: 'SB'}
 
 player_bet:
-  test_image_1.png: {1: 'CO', 'BTN': '', 'SB': '700', 'BB': '', 5: '-so-', 'MP': ''}
-  test_image_2.png: {1: 'SB', BB: '8,000', MP: '', CO: '', 5: '-so-', BTN: ''}
-  test_image_3.png: {1: 'BB', 2: '-so-', CO: '', BTN: '', 5: '-so-', SB: '50'}
-  test_image_4.png: {1: 'CO', BTN: '1,748', SB: '1,748', BB: '', 5: '-so-', MP: ''}
-  test_image_5.png: {1: 'SB', 2: '-', 'BB': '100', 'CO': '', 5: '-', BTN: '100'}
-  test_image_6.png: {1: 'BTN', 'SB': '50', 'BB': '100', 'MP': '100', 5: '-so-', CO: '100'}
-  test_image_7.png: {1: 'SB', 'BB': '', 3: '-so-', 4: '-so-', 'CO': '', 'BTN': ''}
-  test_image_8.png: {1: 'BB', 2: '-', 'CO': '', 'BTN': '100', 5: '-', 'SB': ''}
-  test_image_9.png: {1: 'BTN', 'SB': '', 'BB': '50', 'UTG': '100', 'MP': '200', 'CO': '200'}
-  test_image_10.png: {1: 'BB', 'CO': '2,362', 3: '-', 4: '-', 'BTN': '', 'SB': ''}
+  test_image_1.png: {'Hero': 'CO', 'BTN': '', 'SB': '700', 'BB': '', 5: '-so-', 'MP': ''}
+  test_image_2.png: {'Hero': 'SB', BB: '8,000', MP: '', CO: '', 5: '-so-', BTN: ''}
+  test_image_3.png: {'Hero': 'BB', 2: '-so-', CO: '', BTN: '', 5: '-so-', SB: '50'}
+  test_image_4.png: {'Hero': 'CO', BTN: '1,748', SB: '1,748', BB: '', 5: '-so-', MP: ''}
+  test_image_5.png: {'Hero': 'SB', 2: '-', 'BB': '100', 'CO': '', 5: '-', BTN: '100'}
+  test_image_6.png: {'Hero': 'BTN', 'SB': '50', 'BB': '100', 'MP': '100', 5: '-so-', CO: '100'}
+  test_image_7.png: {'Hero': 'SB', 'BB': '', 3: '-so-', 4: '-so-', 'CO': '', 'BTN': ''}
+  test_image_8.png: {'Hero': 'BB', 2: '-', 'CO': '', 'BTN': '100', 5: '-', 'SB': ''}
+  test_image_9.png: {'Hero': 'BTN', 'SB': '', 'BB': '50', 'UTG': '100', 'MP': '200', 'CO': '200'}
+  test_image_10.png: {'Hero': 'BB', 'CO': '2,362', 3: '-', 4: '-', 'BTN': '', 'SB': ''}
 
 
 
