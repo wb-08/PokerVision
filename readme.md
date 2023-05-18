@@ -4,7 +4,7 @@ Recognition of all entities on the poker table( now only for Pokerstars) and add
 ![pokerstars.gif](pokerstars.gif)
 
 
-NOTE: it only works with the theme that I have and for 6 players. It has been tested on ubuntu wit python version 3.8
+NOTE: it only works with the theme that I have and for 6 players. It has been tested on ubuntu with python version 3.8
 
 
 # Installing and Running
