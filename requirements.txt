@@ -7,3 +7,4 @@ opencv-python==4.5.5.62
 Pillow==9.5.0
 pyparsing==3.0.9
 PyYAML==6.0
+Cython
