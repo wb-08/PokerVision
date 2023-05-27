@@ -15,5 +15,6 @@ $ cd PokerVision
 $ virtualenv venv
 $ source venv/bin/activate
 $ pip3 install -r requirements.txt
-$ python3 scripts/grab_table.py
+$ cd scripts
+$ python3 grab_table.py
 ```
